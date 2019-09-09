@@ -34,7 +34,6 @@ services:
       - PROTOCOL=udp
       - ENCRYPTION=strong
       - REGION=${PIA_REGION}
-      - EXTRA_SUBNETS=192.168.0.0/12
 
   hydra2:
     image: linuxserver/hydra2:latest
@@ -75,6 +74,9 @@ services:
 
   deluge:
     image: linuxserver/deluge
+    network_mode: service:pia
+    depends_on:
+      - pia
     ports:
       - 8900:8112
     environment:
