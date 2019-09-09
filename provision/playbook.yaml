@@ -54,4 +54,4 @@
   - name: Start docker services
     command: /usr/bin/docker-compose up -d
     args:
-      chdir: "/home/{{user}}"
+      chdir: "/home/{{user}}/homemedia-docker"
