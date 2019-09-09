@@ -1,0 +1,7 @@
+user: ubunut
+packages:
+  - "docker"
+  - "docker-compose"
+fqdn: organizr.my_domain.com
+hostname: organizr
+ip_address: "{{ ansible_eth0.ipv4.address }}"
