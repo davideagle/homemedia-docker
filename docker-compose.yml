@@ -220,12 +220,6 @@ services:
       - PGID=${PGID} # default group id, defined in .env
     volumes:
       - ${ROOT}/config/organizr:/config
-
-   labels:
-    - traefik.backend=blog
-    - traefik.frontend.rule=Host:blog.your_domain
-    - traefik.docker.network=web
-    - traefik.port=80
     labels:
       <<: *default_traefik_no_auth
       traefik.backend: 'organizr'
