@@ -261,7 +261,7 @@ services:
     image: traefik:latest
     restart: always
     command:
-      --logLevel=debug --entryPoints="Name:http Address::80" --defaultEntryPoints=https,http \
+      --logLevel=info --entryPoints="Name:http Address::80" --defaultEntryPoints=https,http \
       --docker --docker.domain=${DOMAIN:-default} --docker.endpoint="unix:///var/run/docker.sock" \
       --docker.watch=true --docker.exposedbydefault=false \
       --api \
