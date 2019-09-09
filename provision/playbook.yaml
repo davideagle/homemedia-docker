@@ -1,0 +1,54 @@
+---
+- hosts: media
+  tasks:
+
+- name: Provision Homemedia
+  gather_facts: true
+  remote_user: "{{user}}"
+  become: yes
+  hosts: media
+
+  vars_files:
+    - vars/main.yaml
+
+  tasks:
+  - name: Dump some facts
+    debug: "msg='OS family/distribution: {{ansible_os_family}}/{{ansible_distribution}}'"
+
+  - include_role:
+      name: holms.fqdn
+
+  - name: Install utility packages common to all hosts
+    apt:
+      name:
+      - docker
+      - docker-compose
+      - python-apt
+      state: present
+      autoclean: yes
+
+  - name: Creates directory
+    file:
+      path: "/media/my_user/storage/homemedia"
+      state: directory
+      owner: "{{user}}"
+      group: "{{user}}"
+      recurse: yes
+      mode: "u=rwX,g=rX,o=rX"
+
+  - name: Start docker
+    service:
+      name: docker
+      enabled: yes
+      state: started
+
+  - name: Add Vagrant to Docker group
+    user:
+      name: "{{user}}"
+      groups: docker
+      append: yes
+
+  - name: Start docker services
+    command: /usr/bin/docker-compose up -d
+    args:
+      chdir: "/home/{{user}}"

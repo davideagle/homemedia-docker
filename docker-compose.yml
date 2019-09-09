@@ -1,4 +1,4 @@
-version: '3.6'
+version: '3.4'
 
 x-lsio-env: &lsio_env
   PUID: ${PUID}
@@ -6,7 +6,7 @@ x-lsio-env: &lsio_env
   TZ: ${TZ}
 x-default-traefik-no-auth: &default_traefik_no_auth
   traefik.enable: 'true'
-  traefik.https.frontend.headers.SSLRedirect: 'true'
+  traefik.https.frontend.headers.SSLRedirect: 'false'
   traefik.https.frontend.headers.STSSeconds: '315360000'
   traefik.https.frontend.headers.browserXSSFilter: 'true'
   traefik.https.frontend.headers.contentTypeNosniff: 'true'
@@ -75,21 +75,22 @@ services:
 
   deluge:
     image: linuxserver/deluge
-    network_mode: service:pia
-    depends_on:
-      - pia
+    ports:
+      - 8900:8112
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
       - UMASK_SET=022
       - TZ=${TZ}
+      - LANGUGAE=${LANGUGAE}
+      - DELUGE_LOGLEVEL=info
     volumes:
       - ${ROOT}/config/deluge:/config
       - ${ROOT}/torrents:/data/torrents
     restart: unless-stopped
     labels:
       <<: *default_traefik_opts
-      traefik.port: 8112
+      traefik.port: '8112'
       traefik.local.frontend.rule: 'Host:deluge.${LOCAL_DOMAIN:-localhost}'
       traefik.https.frontend.rule: 'Host:deluge.${DOMAIN:-default}'
 
@@ -260,7 +261,7 @@ services:
     image: traefik:latest
     restart: always
     command:
-      --logLevel=info --entryPoints="Name:http Address::80" --defaultEntryPoints=https,http \
+      --logLevel=debug --entryPoints="Name:http Address::80" --defaultEntryPoints=https,http \
       --docker --docker.domain=${DOMAIN:-default} --docker.endpoint="unix:///var/run/docker.sock" \
       --docker.watch=true --docker.exposedbydefault=false \
       --api \
