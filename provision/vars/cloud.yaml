@@ -2,6 +2,6 @@ user: ubuntu
 packages:
   - "docker"
   - "docker-compose"
-fqdn: organizr.my_domain.com
-hostname: organizr
+fqdn: media.brudkaupid.com
+hostname: media
 ip_address: "{{ ansible_eth0.ipv4.address }}"
