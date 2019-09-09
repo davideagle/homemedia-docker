@@ -81,6 +81,8 @@ services:
       - PGID='${PGID}'
       - UMASK_SET='022'
       - TZ=${TZ}
+      - LANGUGAE=${LANGUGAE}
+      - DELUGE_LOGLEVEL=info
     volumes:
       - ${ROOT}/config/deluge:/config
       - ${ROOT}/torrents:/data/torrents
