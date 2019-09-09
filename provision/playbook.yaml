@@ -63,6 +63,10 @@
       recurse: yes
       mode: "u=rwX,g=rX,o=rX"
 
+    file:
+      path: "/media/my_user/storage/homemedia/config/traefik/acme.json"
+      mode: "0600"
+
   - name: Start docker
     service:
       name: docker
