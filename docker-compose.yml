@@ -223,7 +223,7 @@ services:
     labels:
       <<: *default_traefik_no_auth
       traefik.backend: 'organizr'
-      traefik.port: '81'
+      traefik.port: '80'
       traefik.local.frontend.rule: 'Host:media.${LOCAL_DOMAIN:-localhost}'
       traefik.frontend.rule: 'Host:media.brudkaupid.com'
 
