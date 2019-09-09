@@ -54,22 +54,22 @@
       state: present
       autoclean: yes
 
-  - name: Creates directory
-    file:
-      path: "/media/my_user/storage/homemedia"
-      state: directory
-      owner: "{{user}}"
-      group: "{{user}}"
-      recurse: yes
-      mode: "u=rwX,g=rX,o=rX"
-      
-  - name: Set Acme Permissions
-    file:
-      path: "/media/my_user/storage/homemedia/config/traefik/acme.json"
-      mode: "0600"
-      owner: "{{user}}"
-      group: "{{user}}"
-      state: file
+  # - name: Creates directory
+  #   file:
+  #     path: "/media/my_user/storage/homemedia"
+  #     state: directory
+  #     owner: "{{user}}"
+  #     group: "{{user}}"
+  #     recurse: yes
+  #     mode: "u=rwX,g=rX,o=rX"
+  #
+  # - name: Set Acme Permissions
+  #   file:
+  #     path: "/media/my_user/storage/homemedia/config/traefik/acme.json"
+  #     mode: "0600"
+  #     owner: "{{user}}"
+  #     group: "{{user}}"
+  #     state: file
 
   - name: Start docker
     service:
