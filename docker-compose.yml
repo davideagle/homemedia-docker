@@ -71,30 +71,48 @@ services:
       traefik.port: '3579'
       traefik.local.frontend.rule: 'Host:ombi.${LOCAL_DOMAIN:-localhost}'
       traefik.https.frontend.rule: 'Host:ombi.${DOMAIN:-default}'
-
   deluge:
     image: linuxserver/deluge
     network_mode: service:pia
     depends_on:
       - pia
-    ports:
-      - 8112:8112
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
       - UMASK_SET=022
       - TZ=${TZ}
-      - LANGUGAE=${LANGUGAE}
-      - DELUGE_LOGLEVEL=info
     volumes:
       - ${ROOT}/config/deluge:/config
       - ${ROOT}/torrents:/data/torrents
     restart: unless-stopped
     labels:
       <<: *default_traefik_opts
-      traefik.port: '8112'
+      traefik.port: 8112
       traefik.local.frontend.rule: 'Host:deluge.${LOCAL_DOMAIN:-localhost}'
       traefik.https.frontend.rule: 'Host:deluge.${DOMAIN:-default}'
+  # deluge:
+  #   image: linuxserver/deluge
+  #   network_mode: service:pia
+  #   depends_on:
+  #     - pia
+  #   ports:
+  #     - 8112:8112
+  #   environment:
+  #     - PUID=${PUID}
+  #     - PGID=${PGID}
+  #     - UMASK_SET=022
+  #     - TZ=${TZ}
+  #     - LANGUGAE=${LANGUGAE}
+  #     - DELUGE_LOGLEVEL=info
+  #   volumes:
+  #     - ${ROOT}/config/deluge:/config
+  #     - ${ROOT}/torrents:/data/torrents
+  #   restart: unless-stopped
+  #   labels:
+  #     <<: *default_traefik_opts
+  #     traefik.port: '8112'
+  #     traefik.local.frontend.rule: 'Host:deluge.${LOCAL_DOMAIN:-localhost}'
+  #     traefik.https.frontend.rule: 'Host:deluge.${DOMAIN:-default}'
 
   jackett:
     image: linuxserver/jackett:latest
