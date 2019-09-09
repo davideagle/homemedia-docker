@@ -77,9 +77,9 @@ services:
     depends_on:
       - pia
     environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
-      - UMASK_SET=022
+      - PUID='${PUID}'
+      - PGID='${PGID}'
+      - UMASK_SET='022'
       - TZ=${TZ}
     volumes:
       - ${ROOT}/config/deluge:/config
