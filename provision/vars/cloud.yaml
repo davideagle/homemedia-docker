@@ -1,4 +1,4 @@
-user: ubunut
+user: ubuntu
 packages:
   - "docker"
   - "docker-compose"
