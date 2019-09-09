@@ -78,7 +78,7 @@ services:
     depends_on:
       - pia
     ports:
-      - 8900:8112
+      - 8112:8112
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
