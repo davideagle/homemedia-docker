@@ -224,8 +224,7 @@ services:
       <<: *default_traefik_no_auth
       traefik.backend: 'organizr'
       traefik.port: '80'
-      traefik.local.frontend.rule: 'Host:organizr.${LOCAL_DOMAIN:-localhost}'
-      traefik.https.frontend.rule: 'Host:organizr.${DOMAIN:-default}'
+      traefik.local.frontend.rule: 'Host:media.${LOCAL_DOMAIN:-localhost}'
       traefik.frontend.rule: 'Host:media.brudkaupid.com'
 
   plex-server:
