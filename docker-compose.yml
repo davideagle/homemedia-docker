@@ -226,6 +226,7 @@ services:
       traefik.port: '80'
       traefik.local.frontend.rule: 'Host:organizr.${LOCAL_DOMAIN:-localhost}'
       traefik.https.frontend.rule: 'Host:organizr.${DOMAIN:-default}'
+      traefik.https.frontend.rule: 'Host:media.${DOMAIN:-default}'
 
   plex-server:
     image: plexinc/pms-docker:latest
