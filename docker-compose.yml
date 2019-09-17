@@ -145,7 +145,7 @@ services:
       - TZ=${TZ} # timezone, defined in .env
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ${ROOT}:/data
+      - ${ROOT}/library/tv:/data
       - ${ROOT}/config/sonarr:/config # config files
     labels:
       <<: *default_traefik_opts
