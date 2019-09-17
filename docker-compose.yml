@@ -77,8 +77,6 @@ services:
     network_mode: service:pia
     depends_on:
       - pia
-    ports:
-      - 8112:8112
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
