@@ -164,7 +164,7 @@ services:
       - TZ=${TZ} # timezone, defined in .env
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ${ROOT}:/data
+      - ${ROOT}/library/movies:/data
       - ${ROOT}/config/radarr:/config # config files
     labels:
       <<: *default_traefik_opts
