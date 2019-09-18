@@ -51,6 +51,7 @@
       - python-apt
       - sudo
       - tzdata
+      - zsh
       state: present
       autoclean: yes
 
@@ -70,6 +71,14 @@
   #     owner: "{{user}}"
   #     group: "{{user}}"
   #     state: file
+
+  - name: acme.json
+    file:
+      path: "/media/my_user/storage/homemedia/config/traefik/acme.json"
+      mode: "0600"
+      owner: "{{user}}"
+      group: "{{user}}"
+      state: file
 
   - name: Start docker
     service:
