@@ -43,7 +43,7 @@ services:
       - PGID=${PGID}
       - TZ=${TZ}
     volumes:
-      - ${ROOT}/config/hydra2:/config
+      - /home/ubuntu/config/hydra2:/config
       - ${ROOT}/usenet:/data/usenet
     ports:
       - 5076:5076
@@ -62,7 +62,7 @@ services:
       - PGID=${PGID}
       - TZ=${TZ}
     volumes:
-      - ${ROOT}/config/ombi:/config
+      - /home/ubuntu/config/ombi:/config
     ports:
       - 3579:3579
     restart: unless-stopped
@@ -86,7 +86,7 @@ services:
       - LANGUGAE=${LANGUGAE}
       - DELUGE_LOGLEVEL=info
     volumes:
-      - ${ROOT}/config/deluge:/config
+      - /home/ubuntu/config/deluge:/config
       - ${ROOT}/torrents:/data/torrents
     restart: unless-stopped
     labels:
@@ -107,7 +107,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ${ROOT}/torrents/blackhole:/blackhole # place where to put .torrent files for manual download
-      - ${ROOT}/config/jackett:/config # config files
+      - /home/ubuntu/config/jackett:/config # config files
     labels:
       <<: *default_traefik_opts
       traefik.backend: 'jackett'
@@ -126,7 +126,7 @@ services:
       - TZ=${TZ} # timezone, defined in .env
     volumes:
       - ${ROOT}/usenet:/data/usenet # download folder
-      - ${ROOT}/config/sabnzbd:/config # config files
+      - /home/ubuntu/config/sabnzbd:/config # config files
     labels:
       <<: *default_traefik_opts
       traefik.backend: 'sabnzbd'
@@ -146,7 +146,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ${ROOT}:/data
-      - ${ROOT}/config/sonarr:/config # config files
+      - /home/ubuntu/config/sonarr:/config # config files
     labels:
       <<: *default_traefik_opts
       traefik.backend: 'sonarr'
@@ -165,7 +165,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ${ROOT}:/data
-      - ${ROOT}/config/radarr:/config # config files
+      - /home/ubuntu/config/radarr:/config # config files
     labels:
       <<: *default_traefik_opts
       traefik.backend: 'radarr'
@@ -180,7 +180,7 @@ services:
       - PGID=${PGID}
       - TZ=${TZ}
     volumes:
-      - ${ROOT}/config/lidarr:/config
+      - /home/ubuntu/config/lidarr:/config
       - ${ROOT}:/data
     ports:
       - 8686:8686
@@ -202,7 +202,7 @@ services:
       - PGID=${PGID} # default group id, defined in .env
       - TZ=${TZ} # timezone, defined in .env
     volumes:
-      - ${ROOT}/config/bazarr:/config
+      - /home/ubuntu/config/bazarr:/config
       - ${ROOT}/library:/library
     labels:
       <<: *default_traefik_opts
@@ -220,7 +220,7 @@ services:
       - PUID=${PUID} # default user id, defined in .env
       - PGID=${PGID} # default group id, defined in .env
     volumes:
-      - ${ROOT}/config/organizr:/config
+      - /home/ubuntu/config/organizr:/config
     labels:
       <<: *default_traefik_no_auth
       traefik.backend: 'organizr'
@@ -237,7 +237,7 @@ services:
       - PUID=${PUID} # default user id, defined in .env
       - PGID=${PGID} # default group id, defined in .env
     volumes:
-      - ${ROOT}/config/organizr:/config
+      - /home/ubuntu/config/organizr:/config
     labels:
       - traefik.backend=organizr
       - traefik.frontend.rule=Host:media.brudkaupid.com
@@ -250,8 +250,8 @@ services:
       - TZ=${TZ} # timezone, defined in .env
     network_mode: host # access on port 32400
     volumes:
-      - ${ROOT}/config/plex/db:/config # plex database
-      - ${ROOT}/config/plex/transcode:/transcode # temp transcoded files
+      - /home/ubuntu/config/plex/db:/config # plex database
+      - /home/ubuntu/config/plex/transcode:/transcode # temp transcoded files
       - ${ROOT}/library:/data # media library
 
   tautulli:
@@ -261,7 +261,7 @@ services:
       - PGID=${PGID}
       - TZ=${TZ}
     volumes:
-      - ${ROOT}/config/tautulli:/config
+      - /home/ubuntu/config/tautulli:/config
       - ${ROOT}/logs/tautulli:/logs
     ports:
       - 8181:8181
@@ -290,7 +290,7 @@ services:
       - 8080:8080
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ${ROOT}/config/traefik/acme.json:/acme.json
+      - /home/ubuntu/config/traefik/acme.json:/acme.json
     labels:
       <<: *default_traefik_opts
       traefik.backend: 'traefik'
