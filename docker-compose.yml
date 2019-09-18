@@ -87,7 +87,7 @@ services:
       - DELUGE_LOGLEVEL=info
     volumes:
       - /home/ubuntu/config/deluge:/config
-      - ${ROOT}/torrents:/data/torrents
+      - /home/ubuntu/torrents:/data/torrents
     restart: unless-stopped
     labels:
       <<: *default_traefik_opts
@@ -106,7 +106,7 @@ services:
       - TZ=${TZ} # timezone, defined in .env
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ${ROOT}/torrents/blackhole:/blackhole # place where to put .torrent files for manual download
+      - /home/ubuntu/torrents/blackhole:/blackhole # place where to put .torrent files for manual download
       - /home/ubuntu/config/jackett:/config # config files
     labels:
       <<: *default_traefik_opts
