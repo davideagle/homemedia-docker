@@ -274,7 +274,7 @@ services:
       traefik.https.frontend.rule: 'Host:tautulli.${DOMAIN:-default}'
 
   traefik:
-    image: traefik:latest
+    image: traefik:alpine
     restart: always
     command:
       --logLevel=info --entryPoints="Name:http Address::80" --defaultEntryPoints=https,http \
