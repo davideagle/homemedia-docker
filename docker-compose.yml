@@ -87,7 +87,7 @@ services:
       - DELUGE_LOGLEVEL=info
     volumes:
       - /home/ubuntu/config/deluge:/config
-      - /home/ubuntu/torrents:/data/torrents
+      - /home/ubuntu/data/torrents:/data/torrents
     restart: unless-stopped
     labels:
       <<: *default_traefik_opts
@@ -145,7 +145,7 @@ services:
       - TZ=${TZ} # timezone, defined in .env
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ${ROOT}:/data
+      - /home/ubuntu/data:/data
       - /home/ubuntu/config/sonarr:/config # config files
     labels:
       <<: *default_traefik_opts
@@ -164,7 +164,7 @@ services:
       - TZ=${TZ} # timezone, defined in .env
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - ${ROOT}:/data
+      - /home/ubuntu/data:/data
       - /home/ubuntu/config/radarr:/config # config files
     labels:
       <<: *default_traefik_opts
