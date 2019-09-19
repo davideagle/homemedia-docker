@@ -146,6 +146,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ${ROOT}:/data
+      - /home/ubuntu/data/torrents/:/data/torrents
       - /home/ubuntu/config/sonarr:/config # config files
     labels:
       <<: *default_traefik_opts
