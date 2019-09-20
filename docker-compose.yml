@@ -298,7 +298,7 @@ services:
       --acme.domains=${DOMAIN:-default}
       --acme.email=${EMAIL:-default}
       --acme.storage=acme.json
-      --acme.caServer=https://acme-staging.api.letsencrypt.org/directory
+      --acme.caServer=https://acme-staging-v02.api.letsencrypt.org/directory
     ports:
       - 80:80
       - 443:443
