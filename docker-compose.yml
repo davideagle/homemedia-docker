@@ -242,9 +242,9 @@ services:
       - /home/ubuntu/config/organizr:/config
     labels:
       <<: *default_traefik_no_auth
-      traefik.backend: 'organizr'
+      traefik.backend: 'media'
       traefik.port: '80'
-      traefik.local.frontend.rule: 'Host:media.brudkaupid.com'
+      traefik.local.frontend.rule: 'Host:media.${LOCAL_DOMAIN:-localhost}'
       traefik.https.frontend.rule: 'Host:media.brudkaupid.com'
 
   plex-server:
@@ -311,4 +311,4 @@ services:
       traefik.backend: 'traefik'
       traefik.port: '8080'
       traefik.local.frontend.rule: 'Host:traefik.${LOCAL_DOMAIN:-localhost}'
-      traefik.https.frontend.rule: 'media.brudkaupid.com'
+      traefik.https.frontend.rule: 'Host:traefik.${DOMAIN:-default}'
