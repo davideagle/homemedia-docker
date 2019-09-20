@@ -213,11 +213,28 @@ services:
       traefik.local.frontend.rule: 'Host:bazarr.${LOCAL_DOMAIN:-localhost}'
       traefik.https.frontend.rule: 'Host:bazarr.${DOMAIN:-default}'
 
-  organizr:
+  # organizr:
+  #   image: organizrtools/organizr-v2:latest
+  #   restart: unless-stopped
+  #   ports:
+  #     - 82:80
+  #   environment:
+  #     - PUID=${PUID} # default user id, defined in .env
+  #     - PGID=${PGID} # default group id, defined in .env
+  #   volumes:
+  #     - /home/ubuntu/config/organizr:/config
+  #   labels:
+  #     <<: *default_traefik_no_auth
+  #     traefik.backend: 'organizr'
+  #     traefik.port: '80'
+  #     traefik.local.frontend.rule: 'Host:media.${LOCAL_DOMAIN:-localhost}'
+  #     traefik.frontend.rule: 'Host:media.brudkaupid.com'
+
+  media:
     image: organizrtools/organizr-v2:latest
     restart: unless-stopped
     ports:
-      - 82:80
+      - 83:80
     environment:
       - PUID=${PUID} # default user id, defined in .env
       - PGID=${PGID} # default group id, defined in .env
@@ -227,24 +244,8 @@ services:
       <<: *default_traefik_no_auth
       traefik.backend: 'organizr'
       traefik.port: '80'
-      traefik.local.frontend.rule: 'Host:media.${LOCAL_DOMAIN:-localhost}'
-      traefik.frontend.rule: 'Host:media.brudkaupid.com'
-      traefik.https.frontend.rule: 'Host:organizr.${DOMAIN:-default}'
-
-  # media:
-  #   image: organizrtools/organizr-v2:latest
-  #   restart: unless-stopped
-  #   ports:
-  #     - 83:80
-  #   environment:
-  #     - PUID=${PUID} # default user id, defined in .env
-  #     - PGID=${PGID} # default group id, defined in .env
-  #   volumes:
-  #     - /home/ubuntu/config/organizr:/config
-  #   labels:
-  #     - traefik.backend=organizr
-  #     - traefik.frontend.rule=Host:media.brudkaupid.com
-  #     - traefik.port=80
+      traefik.local.frontend.rule: 'Host:media.brudkaupid.com'
+      traefik.https.frontend.rule: 'Host:media.brudkaupid.com'
 
   plex-server:
     image: plexinc/pms-docker:latest
