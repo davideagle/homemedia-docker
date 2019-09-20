@@ -279,13 +279,24 @@ services:
     image: traefik:alpine
     restart: always
     command:
-      --logLevel=info --entryPoints="Name:http Address::80" --defaultEntryPoints=https,http \
-      --docker --docker.domain=${DOMAIN:-default} --docker.endpoint="unix:///var/run/docker.sock" \
-      --docker.watch=true --docker.exposedbydefault=false \
-      --api \
-      --entryPoints="Name:https Address::443 TLS" \
-      --acme=true --acme.entrypoint=https --acme.httpchallenge --acme.httpchallenge.entrypoint=http \
-      --acme.domains=${DOMAIN:-default} --acme.email=${EMAIL:-default} --acme.storage=acme.json --acme.caServer=https://acme-staging.api.letsencrypt.org/directory
+      --logLevel=info
+      --entryPoints="Name:http Address::80"
+      --defaultEntryPoints=https,http
+      --docker
+      --docker.domain=${DOMAIN:-default}
+      --docker.endpoint="unix:///var/run/docker.sock"
+      --docker.watch=true
+      --docker.exposedbydefault=false
+      --api
+      --entryPoints="Name:https Address::443 TLS"
+      --acme=true
+      --acme.entrypoint=https
+      --acme.httpchallenge
+      --acme.httpchallenge.entrypoint=http
+      --acme.domains=${DOMAIN:-default}
+      --acme.email=${EMAIL:-default}
+      --acme.storage=acme.json
+      --acme.caServer=https://acme-staging.api.letsencrypt.org/directory
     ports:
       - 80:80
       - 443:443
