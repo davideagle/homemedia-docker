@@ -245,6 +245,7 @@ services:
       traefik.backend: 'media'
       traefik.port: '80'
       traefik.local.frontend.rule: 'Host:media.${LOCAL_DOMAIN:-localhost}'
+
       traefik.https.frontend.rule: 'Host:media.brudkaupid.com'
 
   plex-server:
@@ -267,6 +268,7 @@ services:
     volumes:
       - /home/ubuntu/config/tautulli:/config
       - ${ROOT}/logs/tautulli:/logs
+      - ${ROOT}/library:/library
     ports:
       - 8181:8181
     restart: unless-stopped
