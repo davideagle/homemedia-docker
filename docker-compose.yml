@@ -87,7 +87,7 @@ services:
       - DELUGE_LOGLEVEL=info
     volumes:
       - /home/ubuntu/config/deluge:/config
-      - /home/ubuntu/data/torrents:/data/torrents
+      - ${ROOT}/torrents:/data/torrents
     restart: unless-stopped
     labels:
       <<: *default_traefik_opts
@@ -203,7 +203,6 @@ services:
       - PUID=${PUID} # default user id, defined in .env
       - PGID=${PGID} # default group id, defined in .env
       - TZ=${TZ} # timezone, defined in .env
-      - DEBUG=true
     volumes:
       - /home/ubuntu/config/bazarr:/config
       - ${ROOT}/library:/library
